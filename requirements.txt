@@ -1,0 +1,3 @@
+twilio
+flask
+python-dotenv
