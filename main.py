@@ -44,7 +44,7 @@ def get_token():
     access_token.add_grant(voice_grant)
 
     response = jsonify(
-        {'token': access_token.to_jwt().decode(), 'identity': identity})
+        {'token': access_token.to_jwt(), 'identity': identity})
     response.headers.add('Access-Control-Allow-Origin', '*')
 
     return response
@@ -66,6 +66,20 @@ def call():
         dial.client(twilio_number)
 
     return str(response.append(dial))
+
+
+@app.route('/press_digit', methods=['POST'])
+def press_digit():
+    p.pprint(request.json)
+
+    if 'digit' in request.json:
+        digit = request.json['digit']
+        response = VoiceResponse()
+        response.play('', digits=f'{digit}')
+        print(response)
+        return str(response)
+    else:
+        return 'ERROR'
 
 
 if __name__ == "__main__":
