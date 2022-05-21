@@ -8,4 +8,4 @@ COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
-CMD python ./main.py > /dev/null & ngrok http 3000
+CMD sh startup.sh
