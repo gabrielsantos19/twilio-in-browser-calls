@@ -115,3 +115,15 @@ $(function () {
     }
 
 });
+
+
+// Added
+function press_digit(d) {
+    fetch("/press_digit", {
+        method: "POST",
+        headers: {'Content-Type': 'application/json'}, 
+        body: JSON.stringify({digit:d})
+    }).then(res => {
+        console.log("Request complete! response:", res);
+    });
+}
